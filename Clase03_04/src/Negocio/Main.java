@@ -1,5 +1,5 @@
  /*
-    Repositorio:
+    Repositorio: https://github.com/jsmsalt/curso-java
  */
 package Negocio;
 import Modelo.*;
