@@ -1,0 +1,940 @@
+{
+	"info": {
+		"_postman_id": "66c19fe8-a12f-4a5b-96ad-09e95ba05c68",
+		"name": "Java API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01 - Monedas",
+			"item": [
+				{
+					"name": "Agregar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"descripcion\":\"USD\",\n\t\t\"cotizacion\":56\n\t},\n\t{\n\t\t\"descripcion\":\"EUR\",\n\t\t\"cotizacion\":60\n\t},\n\t{\n\t\t\"descripcion\":\"MXN\",\n\t\t\"cotizacion\":2\n\t},\n\t{\n\t\t\"descripcion\":\"ARS\",\n\t\t\"cotizacion\":1\n\t}\n]"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/monedas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"monedas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/monedas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"monedas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar ID 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/monedas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"monedas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar ID 1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"descripcion\": \"CLP\",\n\t\"cotizacion\": 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/monedas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"monedas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar ID 2",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "descripcion",
+									"value": "MXN",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/monedas/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"monedas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "02 - Tipos Pago",
+			"item": [
+				{
+					"name": "Agregar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"descripcion\": \"Efectivo\"\n\t},\n\t{\n\t\t\"descripcion\": \"Debito\"\n\t},\n\t{\n\t\t\"descripcion\": \"Credito\"\n\t}\n]"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tipopagos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tipopagos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tipopagos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tipopagos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar ID 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tipopagos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tipopagos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar ID 1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"descripcion\": \"Bitcoin\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tipopagos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tipopagos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar ID 2",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "descripcion",
+									"value": "MXN",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tipopagos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tipopagos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "03 - Subtipos Movimiento",
+			"item": [
+				{
+					"name": "Agregar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"descripcion\": \"Carniceria\"\n\t},\n\t{\n\t\t\"descripcion\": \"Farmacia\"\n\t},\n\t{\n\t\t\"descripcion\": \"Supermercado\"\n\t},\n\t{\n\t\t\"descripcion\": \"Prestamo\"\n\t},\n\t{\n\t\t\"descripcion\": \"Minimarket\"\n\t}\n]"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/subtipos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"subtipos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/subtipos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"subtipos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar ID 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/subtipos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"subtipos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar ID 1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"descripcion\": \"Verduleria\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/subtipos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"subtipos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar ID 2",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "descripcion",
+									"value": "MXN",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/subtipos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"subtipos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "04 - Proveedores",
+			"item": [
+				{
+					"name": "Agregar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"nombre\":\"Farmacia Pepito\",\n\t\t\"cuit\":\"111111111111\",\n\t\t\"direccion\":\"Calle Falsa 123\",\n\t\t\"telefono\":\"380444444\",\n\t\t\"pais\":\"Argentina\",\n\t\t\"provincia\":\"La Rioja\",\n\t\t\"ciudad\":\"La Rioja\"\n\t},\n\t{\n\t\t\"nombre\":\"Supermercado Juancito\",\n\t\t\"cuit\":\"2222222222222\",\n\t\t\"direccion\":\"Calle Falsa 245\",\n\t\t\"telefono\":\"380454545\",\n\t\t\"pais\":\"Argentina\",\n\t\t\"provincia\":\"La Rioja\",\n\t\t\"ciudad\":\"La Rioja\"\n\t},\n\t{\n\t\t\"nombre\":\"Carniceria Norte\",\n\t\t\"cuit\":\"333333333333\",\n\t\t\"direccion\":\"Calle Falsa 245\",\n\t\t\"telefono\":\"380454545\",\n\t\t\"pais\":\"Argentina\",\n\t\t\"provincia\":\"La Rioja\",\n\t\t\"ciudad\":\"La Rioja\"\n\t}\n]"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/proveedores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"proveedores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/proveedores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"proveedores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar ID 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/proveedores/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"proveedores",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar ID 1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\":\"Minimarket Juancito\",\n\t\"cuit\":\"20343434344\",\n\t\"direccion\":\"Calle Falsa 987\",\n\t\"telefono\":\"380333333\",\n\t\"pais\":\"Argentina\",\n\t\"provincia\":\"La Rioja\",\n\t\"ciudad\":\"La Rioja\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/proveedores/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"proveedores",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar ID 2",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "descripcion",
+									"value": "MXN",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/proveedores/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"proveedores",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "05 - Clientes",
+			"item": [
+				{
+					"name": "Agregar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"apellido\":\"Martinez\",\n\t\t\"nombre\":\"Juan\",\n\t\t\"dni\":\"32323232\",\n\t\t\"cuil\":\"20323232324\",\n\t\t\"direccion\":\"Calle Falsa 123\",\n\t\t\"telefono\":\"380444444\",\n\t\t\"pais\":\"Argentina\",\n\t\t\"provincia\":\"La Rioja\",\n\t\t\"ciudad\":\"La Rioja\"\n\t},\n\t{\n\t\t\"apellido\":\"Rodriguez\",\n\t\t\"nombre\":\"Luis\",\n\t\t\"dni\":\"43434343\",\n\t\t\"cuil\":\"20434343435\",\n\t\t\"direccion\":\"Calle Falsa 245\",\n\t\t\"telefono\":\"380454545\",\n\t\t\"pais\":\"Argentina\",\n\t\t\"provincia\":\"La Rioja\",\n\t\t\"ciudad\":\"La Rioja\"\n\t}\n]"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar ID 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/clientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar ID 1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"apellido\":\"Lopez\",\n\t\"nombre\":\"José\",\n\t\"dni\":\"34343434\",\n\t\"cuil\":\"20343434344\",\n\t\"direccion\":\"Calle Falsa 987\",\n\t\"telefono\":\"380333333\",\n\t\"pais\":\"Argentina\",\n\t\"provincia\":\"La Rioja\",\n\t\"ciudad\":\"La Rioja\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/clientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar ID 2",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "descripcion",
+									"value": "MXN",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/clientes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clientes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "06 - Movimientos",
+			"item": [
+				{
+					"name": "Agregar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"fecha\": \"2019-09-10\",\n\t\t\"fechaVencimiento\": null,\n\t\t\"monto\": 200,\n\t\t\"descripcion\": \"Compra de medicamentos\",\n\t\t\"subtipoMovimiento\": {\"id\": 2},\n\t\t\"moneda\": {\"id\": 3},\n\t\t\"tipoPago\": {\"id\": 1},\n\t\t\"tipoMovimiento\": 2,\n\t\t\"cliente\": null,\n\t\t\"proveedor\": {\"id\": 2}\n\t},\n\t{\n\t\t\"fecha\": \"2019-09-15\",\n\t\t\"fechaVencimiento\": \"2019-09-30\",\n\t\t\"monto\": 5000,\n\t\t\"descripcion\": \"Prestamo a Juancito\",\n\t\t\"subtipoMovimiento\": {\"id\": 4},\n\t\t\"moneda\": {\"id\": 2},\n\t\t\"tipoPago\": {\"id\": 1},\n\t\t\"tipoMovimiento\": 2,\n\t\t\"cliente\": {\"id\": 1},\n\t\t\"proveedor\": null\n\t},\n\t{\n\t\t\"fecha\": \"2019-09-20\",\n\t\t\"fechaVencimiento\": null,\n\t\t\"monto\": 3000,\n\t\t\"descripcion\": \"Juancito devuelve parte Prestamo\",\n\t\t\"subtipoMovimiento\": {\"id\": 4},\n\t\t\"moneda\": {\"id\": 2},\n\t\t\"tipoPago\": {\"id\": 1},\n\t\t\"tipoMovimiento\": 1,\n\t\t\"cliente\": {\"id\": 1},\n\t\t\"proveedor\": null\n\t}\n]"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/movimientos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"fechaInicio\": \"2019-09-11\",\n\t\"fechaFin\": \"2019-12-31\",\n\t\"tipoMovimiento\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/movimientos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Deuda",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"fechaInicio\": \"2019-01-01\",\n\t\"fechaFin\": \"2019-12-31\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/movimientos/deudas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimientos",
+								"deudas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar ID 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/movimientos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimientos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar ID 1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"fecha\": \"2019-09-10\",\n\t\"fechaVencimiento\": null,\n\t\"monto\": 200,\n\t\"descripcion\": \"Compra de insumos\",\n\t\"subtipoMovimiento\": {\"id\": 2},\n\t\"moneda\": {\"id\": 3},\n\t\"tipoPago\": {\"id\": 1},\n\t\"tipoMovimiento\": 2,\n\t\"cliente\": null,\n\t\"proveedor\": {\"id\": 1}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/movimientos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimientos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar ID 2",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "descripcion",
+									"value": "MXN",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/movimientos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimientos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
