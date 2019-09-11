@@ -6,40 +6,24 @@ public class Movimiento {
     public static final byte INGRESO = 1;
     public static final byte EGRESO = 2;
 
-    // Cuando se registra el movimiento
+    private int id;
     private Date fecha;
-
-    // Cuando se vence la deuda
     private Date fechaVencimiento;
-
-    // Cuanto se gastó
     private float monto;
-
-    // Un dato que ayude a entender el movimiento
     private String descripcion;
-
-    // Dónde compré o vendí (Carnicería, Verdulería, Peluquería, etc)
     private SubtipoMovimiento subtipoMovimiento;
-
-    // Historial de cotización
     private float cotizacion;
-
-    // Tipo de moneda utilizado
     private Moneda moneda;
-
-    // Forma de pago (Efectivo, Débito, Crédito, etc)
     private TipoPago tipoPago;
-
-    // Ingreso o Egreso
     private byte tipoMovimiento;
-
-    // Cliente o Proveedor
-    private Persona persona;
+    private Cliente cliente = null;
+    private Proveedor proveedor = null;
 
     public Movimiento() {
     }
 
-    public Movimiento(Date fecha, Date fechaVencimiento, float monto, String descripcion, SubtipoMovimiento subtipoMovimiento, float cotizacion, Moneda moneda, TipoPago tipoPago, byte tipoMovimiento, Persona persona) {
+    public Movimiento(int id, Date fecha, Date fechaVencimiento, float monto, String descripcion, SubtipoMovimiento subtipoMovimiento, float cotizacion, Moneda moneda, TipoPago tipoPago, byte tipoMovimiento, Cliente cliente, Proveedor proveedor) {
+        this.id = id;
         this.fecha = fecha;
         this.fechaVencimiento = fechaVencimiento;
         this.monto = monto;
@@ -49,7 +33,16 @@ public class Movimiento {
         this.moneda = moneda;
         this.tipoPago = tipoPago;
         this.tipoMovimiento = tipoMovimiento;
-        this.persona = persona;
+        this.cliente = cliente;
+        this.proveedor = proveedor;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Date getFecha() {
@@ -124,16 +117,37 @@ public class Movimiento {
         this.tipoMovimiento = tipoMovimiento;
     }
 
-    public Persona getPersona() {
-        return persona;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Proveedor getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
     }
 
     @Override
     public String toString() {
-        return "Movimiento{" + "fecha=" + fecha + ", fechaVencimiento=" + fechaVencimiento + ", monto=" + monto + ", descripcion=" + descripcion + ", subtipoMovimiento=" + subtipoMovimiento + ", cotizacion=" + cotizacion + ", moneda=" + moneda + ", tipoPago=" + tipoPago + ", tipoMovimiento=" + tipoMovimiento + ", persona=" + persona + '}';
+        return "Movimiento{" +
+                "id=" + id +
+                ", fecha=" + fecha +
+                ", fechaVencimiento=" + fechaVencimiento +
+                ", monto=" + monto +
+                ", descripcion='" + descripcion + '\'' +
+                ", subtipoMovimiento=" + subtipoMovimiento +
+                ", cotizacion=" + cotizacion +
+                ", moneda=" + moneda +
+                ", tipoPago=" + tipoPago +
+                ", tipoMovimiento=" + tipoMovimiento +
+                ", cliente=" + cliente +
+                ", proveedor=" + proveedor +
+                '}';
     }
 }

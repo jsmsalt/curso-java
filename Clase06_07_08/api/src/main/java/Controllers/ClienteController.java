@@ -1,64 +1,60 @@
 package Controllers;
 
+import Domain.Cliente;
+import Handlers.ClienteHandler;
+import Utils.Mapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+import spark.Request;
+import spark.Response;
+import spark.Route;
+import java.util.ArrayList;
+import static Utils.JsonResponse.ok;
+import static Utils.JsonResponse.error;
+
 public class ClienteController {
-/*    public static Route getMonedas = (Request request, Response response) -> ok(MonedaHandler.getMonedas(), response);
+    public static Route getClientes = (Request request, Response response) -> ok(ClienteHandler.getClientes(), response);
 
-    public static Route getMoneda = (Request request, Response response) -> {
+    public static Route getCliente = (Request request, Response response) -> {
         try {
             int id = Integer.parseInt(request.params(":id"));
-            return ok(MonedaHandler.getMoneda(id), response);
+            return ok(ClienteHandler.getCliente(id), response);
         } catch (Exception e) {
             return error("El ID es inválido", response);
         }
     };
 
-    public static Route deleteMoneda = (Request request, Response response) -> {
+    public static Route deleteCliente = (Request request, Response response) -> {
         try {
             int id = Integer.parseInt(request.params(":id"));
-            return ok(MonedaHandler.deleteMoneda(id), response);
+            return ok(ClienteHandler.deleteCliente(id), response);
         } catch (Exception e) {
             return error("El ID es inválido", response);
         }
     };
 
-    public static Route updateMoneda = (Request request, Response response) -> {
-        String descripcion = request.queryParams("descripcion");
-        String cotizacion = request.queryParams("cotizacion");
-        float cotizacionFloat = 0;
+    public static Route updateCliente = (Request request, Response response) -> {
+        int id = -1;
 
         try {
-            cotizacionFloat = Float.parseFloat(cotizacion);
+            id = Integer.parseInt(request.params(":id"));
         } catch (Exception e) {
-            return error("La cotización no es correcta.", response);
+            return error("El ID es inválido", response);
         }
 
-        if (descripcion != null) {
-            try {
-                int id = Integer.parseInt(request.params(":id"));
-                return ok(MonedaHandler.updateMoneda(id, descripcion, cotizacionFloat), response);
-            } catch (Exception e) {
-                return error("El ID es inválido", response);
-            }
-        } else {
-            return error("No se recibió descripción", response);
+        ArrayList<Cliente> clientes = Mapper.fromJSON(request, new TypeReference<ArrayList<Cliente>>() {});
+        if (clientes != null && clientes.size() == 1) {
+            return ok(ClienteHandler.updateCliente(id, clientes.get(0)), response);
         }
+
+        return null;
     };
 
-    public static Route addMoneda = (Request request, Response response) -> {
-        String descripcion = request.queryParams("descripcion");
-        String cotizacion = request.queryParams("cotizacion");
-        float cotizacionFloat = 0;
-
-        try {
-            cotizacionFloat = Float.parseFloat(cotizacion);
-        } catch (Exception e) {
-            return error("La cotización no es correcta.", response);
-        }
-
-        if (descripcion != null) {
-            return ok(MonedaHandler.addMoneda(descripcion, cotizacionFloat), response);
+    public static Route addCliente = (Request request, Response response) -> {
+        ArrayList<Cliente> clientes = Mapper.fromJSON(request, new TypeReference<ArrayList<Cliente>>() {});
+        if (clientes != null) {
+            return ok(ClienteHandler.addClientes(clientes), response);
         } else {
-            return error("No se recibió descripción", response);
+            return error("Los datos contienen errores", response);
         }
-    };*/
+    };
 }

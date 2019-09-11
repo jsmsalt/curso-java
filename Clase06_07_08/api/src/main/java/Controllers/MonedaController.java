@@ -1,9 +1,15 @@
 package Controllers;
 
+import Domain.Moneda;
 import Handlers.MonedaHandler;
+import Utils.Mapper;
+import com.fasterxml.jackson.core.type.TypeReference;
 import spark.Request;
 import spark.Response;
 import spark.Route;
+
+import java.util.ArrayList;
+
 import static Utils.JsonResponse.error;
 import static Utils.JsonResponse.ok;
 
@@ -29,43 +35,28 @@ public class MonedaController {
     };
 
     public static Route updateMoneda = (Request request, Response response) -> {
-        String descripcion = request.queryParams("descripcion");
-        String cotizacion = request.queryParams("cotizacion");
-        float cotizacionFloat = 0;
+        int id = -1;
 
         try {
-            cotizacionFloat = Float.parseFloat(cotizacion);
+            id = Integer.parseInt(request.params(":id"));
         } catch (Exception e) {
-            return error("La cotización no es correcta.", response);
+            return error("El ID es inválido", response);
         }
 
-        if (descripcion != null) {
-            try {
-                int id = Integer.parseInt(request.params(":id"));
-                return ok(MonedaHandler.updateMoneda(id, descripcion, cotizacionFloat), response);
-            } catch (Exception e) {
-                return error("El ID es inválido", response);
-            }
-        } else {
-            return error("No se recibió descripción", response);
+        ArrayList<Moneda> monedas = Mapper.fromJSON(request, new TypeReference<ArrayList<Moneda>>() {});
+        if (monedas != null && monedas.size() == 1) {
+            return ok(MonedaHandler.updateMoneda(id, monedas.get(0)), response);
         }
+
+        return null;
     };
 
     public static Route addMoneda = (Request request, Response response) -> {
-        String descripcion = request.queryParams("descripcion");
-        String cotizacion = request.queryParams("cotizacion");
-        float cotizacionFloat = 0;
-
-        try {
-            cotizacionFloat = Float.parseFloat(cotizacion);
-        } catch (Exception e) {
-            return error("La cotización no es correcta.", response);
-        }
-
-        if (descripcion != null) {
-            return ok(MonedaHandler.addMoneda(descripcion, cotizacionFloat), response);
+        ArrayList<Moneda> monedas = Mapper.fromJSON(request, new TypeReference<ArrayList<Moneda>>() {});
+        if (monedas != null) {
+            return ok(MonedaHandler.addMonedas(monedas), response);
         } else {
-            return error("No se recibió descripción", response);
+            return error("Los datos contienen errores", response);
         }
     };
 }

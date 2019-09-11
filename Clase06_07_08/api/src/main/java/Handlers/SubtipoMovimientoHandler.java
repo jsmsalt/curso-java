@@ -4,21 +4,21 @@ import Domain.SubtipoMovimiento;
 import java.util.ArrayList;
 
 public class SubtipoMovimientoHandler {
-    private static ArrayList<SubtipoMovimiento> _subtiposmovimiento = new ArrayList<SubtipoMovimiento>();
+    private static ArrayList<SubtipoMovimiento> _subtipomovimientos = new ArrayList<SubtipoMovimiento>();
 
     public SubtipoMovimientoHandler() {
     }
 
-    public SubtipoMovimientoHandler(ArrayList<SubtipoMovimiento> _subtiposmovimiento) {
-        this._subtiposmovimiento = _subtiposmovimiento;
+    public SubtipoMovimientoHandler(ArrayList<SubtipoMovimiento> _subtipomovimientos) {
+        this._subtipomovimientos = _subtipomovimientos;
     }
 
     public static ArrayList<SubtipoMovimiento> getSubtipoMovimientos() {
-        return _subtiposmovimiento;
+        return _subtipomovimientos;
     }
 
     public static SubtipoMovimiento getSubtipoMovimiento(int id) {
-        for (SubtipoMovimiento subtipomovimiento:_subtiposmovimiento) {
+        for (SubtipoMovimiento subtipomovimiento:_subtipomovimientos) {
             if ( subtipomovimiento.getId() == id ) {
                 return subtipomovimiento;
             }
@@ -27,51 +27,57 @@ public class SubtipoMovimientoHandler {
     }
 
     public static SubtipoMovimiento deleteSubtipoMovimiento(int id) {
-        int index = 0;
-        for (SubtipoMovimiento subtipomovimiento:_subtiposmovimiento) {
-            if ( subtipomovimiento.getId() == id ) {
-                return _subtiposmovimiento.remove(index);
+        for (int i = 0; i < _subtipomovimientos.size(); i++) {
+            if ( _subtipomovimientos.get(i).getId() == id ) {
+                return _subtipomovimientos.remove(i);
             }
-            index++;
         }
         return null;
     }
 
-    public static SubtipoMovimiento updateSubtipoMovimiento(int id, String descripcion) {
-        int index = 0;
+    public static SubtipoMovimiento updateSubtipoMovimiento(int id, SubtipoMovimiento _subtipomovimiento) {
         int indexUpdate = -1;
-        SubtipoMovimiento aux;
 
-        for (SubtipoMovimiento subtipomovimiento:_subtiposmovimiento) {
-            if ( subtipomovimiento.getDescripcion().toLowerCase().equals(descripcion.toLowerCase()) ) {
+        for (int i = 0; i < _subtipomovimientos.size(); i++) {
+            if ( _subtipomovimientos.get(i).getDescripcion().toLowerCase().equals(_subtipomovimiento.getDescripcion().toLowerCase()) ) {
                 return null;
             }
 
-            if ( subtipomovimiento.getId() == id ) {
-                indexUpdate = index;
+            if ( _subtipomovimientos.get(i).getId() == id ) {
+                indexUpdate = i;
             }
-            index++;
         }
 
         if (indexUpdate != -1) {
-            aux = _subtiposmovimiento.get(indexUpdate);
-            aux.setDescripcion(descripcion);
-            _subtiposmovimiento.set(indexUpdate, aux);
-            return aux;
+            _subtipomovimiento.setId(_subtipomovimientos.get(indexUpdate).getId());
+            _subtipomovimientos.set(indexUpdate, _subtipomovimiento);
+            return _subtipomovimiento;
         }
 
         return null;
     }
 
-    public static SubtipoMovimiento addSubtipoMovimiento(String descripcion) {
-        for (SubtipoMovimiento subtipomovimiento:_subtiposmovimiento) {
-            if ( subtipomovimiento.getDescripcion().toLowerCase().equals(descripcion.toLowerCase()) ) {
+    public static SubtipoMovimiento addSubtipoMovimiento(SubtipoMovimiento _subtipomovimiento) {
+        if (_subtipomovimiento.getDescripcion().length() == 0) {
+            return null;
+        }
+
+        for (SubtipoMovimiento subtipomovimiento:_subtipomovimientos) {
+            if ( subtipomovimiento.getDescripcion().toLowerCase().equals(_subtipomovimiento.getDescripcion().toLowerCase()) ) {
                 return null;
             }
         }
-        SubtipoMovimiento nuevo = new SubtipoMovimiento(_subtiposmovimiento.size() + 1, descripcion);
-        _subtiposmovimiento.add(nuevo);
 
-        return nuevo;
+        _subtipomovimiento.setId(_subtipomovimientos.get(_subtipomovimientos.size() - 1).getId() + 1);
+        _subtipomovimientos.add(_subtipomovimiento);
+        return _subtipomovimiento;
+    }
+
+    public static ArrayList<SubtipoMovimiento> addSubtipoMovimientos(ArrayList<SubtipoMovimiento> _subtipomovimientos) {
+        for (int i = 0; i < _subtipomovimientos.size(); i++) {
+            _subtipomovimientos.set(i, SubtipoMovimientoHandler.addSubtipoMovimiento(_subtipomovimientos.get(i)));
+        }
+
+        return _subtipomovimientos;
     }
 }

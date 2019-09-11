@@ -1,9 +1,15 @@
 package Controllers;
 
+import Domain.SubtipoMovimiento;
 import Handlers.SubtipoMovimientoHandler;
+import Utils.Mapper;
+import com.fasterxml.jackson.core.type.TypeReference;
 import spark.Request;
 import spark.Response;
 import spark.Route;
+
+import java.util.ArrayList;
+
 import static Utils.JsonResponse.error;
 import static Utils.JsonResponse.ok;
 
@@ -29,27 +35,28 @@ public class SubtipoMovimientoController {
     };
 
     public static Route updateSubtipoMovimiento = (Request request, Response response) -> {
-        String descripcion = request.queryParams("descripcion");
+        int id = -1;
 
-        if (descripcion != null) {
-            try {
-                int id = Integer.parseInt(request.params(":id"));
-                return ok(SubtipoMovimientoHandler.updateSubtipoMovimiento(id, descripcion), response);
-            } catch (Exception e) {
-                return error("El ID es inválido", response);
-            }
-        } else {
-            return error("No se recibió descripción", response);
+        try {
+            id = Integer.parseInt(request.params(":id"));
+        } catch (Exception e) {
+            return error("El ID es inválido", response);
         }
+
+        ArrayList<SubtipoMovimiento> subtipomovimientos = Mapper.fromJSON(request, new TypeReference<ArrayList<SubtipoMovimiento>>() {});
+        if (subtipomovimientos != null && subtipomovimientos.size() == 1) {
+            return ok(SubtipoMovimientoHandler.updateSubtipoMovimiento(id, subtipomovimientos.get(0)), response);
+        }
+
+        return null;
     };
 
     public static Route addSubtipoMovimiento = (Request request, Response response) -> {
-        String descripcion = request.queryParams("descripcion");
-
-        if (descripcion != null) {
-            return ok(SubtipoMovimientoHandler.addSubtipoMovimiento(descripcion), response);
+        ArrayList<SubtipoMovimiento> subtipomovimientos = Mapper.fromJSON(request, new TypeReference<ArrayList<SubtipoMovimiento>>() {});
+        if (subtipomovimientos != null) {
+            return ok(SubtipoMovimientoHandler.addSubtipoMovimientos(subtipomovimientos), response);
         } else {
-            return error("No se recibió descripción", response);
+            return error("Los datos contienen errores", response);
         }
     };
 

@@ -1,9 +1,15 @@
 package Controllers;
 
+import Domain.TipoPago;
 import Handlers.TipoPagoHandler;
+import Utils.Mapper;
+import com.fasterxml.jackson.core.type.TypeReference;
 import spark.Request;
 import spark.Response;
 import spark.Route;
+
+import java.util.ArrayList;
+
 import static Utils.JsonResponse.error;
 import static Utils.JsonResponse.ok;
 
@@ -29,29 +35,28 @@ public class TipoPagoController {
     };
 
     public static Route updateTipoPago = (Request request, Response response) -> {
-        String descripcion = request.queryParams("descripcion");
+        int id = -1;
 
-        if (descripcion != null) {
-            try {
-                int id = Integer.parseInt(request.params(":id"));
-                return ok(TipoPagoHandler.updateTipoPago(id, descripcion), response);
-            } catch (Exception e) {
-                return error("El ID es inválido", response);
-            }
-        } else {
-            return error("No se recibió descripción", response);
+        try {
+            id = Integer.parseInt(request.params(":id"));
+        } catch (Exception e) {
+            return error("El ID es inválido", response);
         }
+
+        ArrayList<TipoPago> tipopagos = Mapper.fromJSON(request, new TypeReference<ArrayList<TipoPago>>() {});
+        if (tipopagos != null && tipopagos.size() == 1) {
+            return ok(TipoPagoHandler.updateTipoPago(id, tipopagos.get(0)), response);
+        }
+
+        return null;
     };
 
     public static Route addTipoPago = (Request request, Response response) -> {
-        String descripcion = request.queryParams("descripcion");
-
-        System.out.println(request.raw());
-
-        if (descripcion != null) {
-            return ok(TipoPagoHandler.addTipoPago(descripcion), response);
+        ArrayList<TipoPago> tipopagos = Mapper.fromJSON(request, new TypeReference<ArrayList<TipoPago>>() {});
+        if (tipopagos != null) {
+            return ok(TipoPagoHandler.addTipoPagos(tipopagos), response);
         } else {
-            return error("No se recibió descripción", response);
+            return error("Los datos contienen errores", response);
         }
     };
 

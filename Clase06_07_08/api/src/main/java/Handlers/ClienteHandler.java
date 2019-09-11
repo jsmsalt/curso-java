@@ -27,55 +27,53 @@ public class ClienteHandler {
     }
 
     public static Cliente deleteCliente(int id) {
-        int index = 0;
-        for (Cliente cliente:_clientes) {
-            if ( cliente.getId() == id ) {
-                return _clientes.remove(index);
+        for (int i = 0; i < _clientes.size(); i++) {
+            if ( _clientes.get(i).getId() == id ) {
+                return _clientes.remove(i);
             }
-            index++;
         }
+
         return null;
     }
 
-    public static Cliente updateCliente(int id, String apellido, String dni, String cuil, String nombre, String direccion, String telefono, String pais, String provincia, String ciudad) {
-        int index = 0;
+    public static Cliente updateCliente(int id, Cliente _cliente) {
         int indexUpdate = -1;
-        Cliente aux;
 
-        for (Cliente cliente:_clientes) {
-            if ( cliente.getId() == id ) {
-                indexUpdate = index;
+        for (int i = 0; i < _clientes.size(); i++) {
+            if ( _clientes.get(i).getCuil().toLowerCase().equals(_cliente.getCuil().toLowerCase()) ) {
+                return null;
             }
-            index++;
+
+            if ( _clientes.get(i).getId() == id ) {
+                indexUpdate = i;
+            }
         }
 
         if (indexUpdate != -1) {
-            aux = _clientes.get(indexUpdate);
-            aux.setApellido(apellido);
-            aux.setCuil(cuil);
-            aux.setDni(dni);
-            aux.setCiudad(ciudad);
-            aux.setDireccion(direccion);
-            aux.setNombre(nombre);
-            aux.setPais(pais);
-            aux.setProvincia(provincia);
-            aux.setTelefono(telefono);
-            _clientes.set(indexUpdate, aux);
-            return aux;
+            _cliente.setId(_clientes.get(indexUpdate).getId());
+            _clientes.set(indexUpdate, _cliente);
+            return _cliente;
         }
 
         return null;
     }
 
-    public static Cliente addCliente(String apellido, String dni, String cuil, String nombre, String direccion, String telefono, String pais, String provincia, String ciudad) {
+    public static Cliente addCliente(Cliente _cliente) {
         for (Cliente cliente:_clientes) {
-            if ( cliente.getDni().toLowerCase().equals(dni.toLowerCase()) ) {
+            if ( cliente.getCuil().toLowerCase().equals(_cliente.getCuil().toLowerCase()) ) {
                 return null;
             }
         }
-        Cliente nuevo = new Cliente(_clientes.size() + 1, apellido, dni, cuil, nombre, direccion, telefono, pais, provincia, ciudad);
-        _clientes.add(nuevo);
+        _cliente.setId(_clientes.get(_clientes.size() - 1).getId() + 1);
+        _clientes.add(_cliente);
+        return _cliente;
+    }
 
-        return nuevo;
+    public static ArrayList<Cliente> addClientes(ArrayList<Cliente> _clientes) {
+        for (int i = 0; i < _clientes.size(); i++) {
+            _clientes.set(i, ClienteHandler.addCliente(_clientes.get(i)));
+        }
+
+        return _clientes;
     }
 }

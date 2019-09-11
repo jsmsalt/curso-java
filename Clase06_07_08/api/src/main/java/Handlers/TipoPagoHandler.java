@@ -4,21 +4,21 @@ import Domain.TipoPago;
 import java.util.ArrayList;
 
 public class TipoPagoHandler {
-    private static ArrayList<TipoPago> _tipospago = new ArrayList<TipoPago>();
+    private static ArrayList<TipoPago> _tipopagos = new ArrayList<TipoPago>();
 
     public TipoPagoHandler() {
     }
 
-    public TipoPagoHandler(ArrayList<TipoPago> _tipospago) {
-        this._tipospago = _tipospago;
+    public TipoPagoHandler(ArrayList<TipoPago> _tipopagos) {
+        this._tipopagos = _tipopagos;
     }
 
     public static ArrayList<TipoPago> getTipoPagos() {
-        return _tipospago;
+        return _tipopagos;
     }
 
     public static TipoPago getTipoPago(int id) {
-        for (TipoPago tipopago:_tipospago) {
+        for (TipoPago tipopago:_tipopagos) {
             if ( tipopago.getId() == id ) {
                 return tipopago;
             }
@@ -27,51 +27,58 @@ public class TipoPagoHandler {
     }
 
     public static TipoPago deleteTipoPago(int id) {
-        int index = 0;
-        for (TipoPago tipopago:_tipospago) {
-            if ( tipopago.getId() == id ) {
-                return _tipospago.remove(index);
+        for (int i = 0; i < _tipopagos.size(); i++) {
+            if ( _tipopagos.get(i).getId() == id ) {
+                return _tipopagos.remove(i);
             }
-            index++;
         }
+
         return null;
     }
 
-    public static TipoPago updateTipoPago(int id, String descripcion) {
-        int index = 0;
+    public static TipoPago updateTipoPago(int id, TipoPago _tipopago) {
         int indexUpdate = -1;
-        TipoPago aux;
 
-        for (TipoPago tipopago:_tipospago) {
-            if ( tipopago.getDescripcion().toLowerCase().equals(descripcion.toLowerCase()) ) {
+        for (int i = 0; i < _tipopagos.size(); i++) {
+            if ( _tipopagos.get(i).getDescripcion().toLowerCase().equals(_tipopago.getDescripcion().toLowerCase()) ) {
                 return null;
             }
 
-            if ( tipopago.getId() == id ) {
-                indexUpdate = index;
+            if ( _tipopagos.get(i).getId() == id ) {
+                indexUpdate = i;
             }
-            index++;
         }
 
         if (indexUpdate != -1) {
-            aux = _tipospago.get(indexUpdate);
-            aux.setDescripcion(descripcion);
-            _tipospago.set(indexUpdate, aux);
-            return aux;
+            _tipopago.setId(_tipopagos.get(indexUpdate).getId());
+            _tipopagos.set(indexUpdate, _tipopago);
+            return _tipopago;
         }
 
         return null;
     }
 
-    public static TipoPago addTipoPago(String descripcion) {
-        for (TipoPago tipopago:_tipospago) {
-            if ( tipopago.getDescripcion().toLowerCase().equals(descripcion.toLowerCase()) ) {
+    public static TipoPago addTipoPago(TipoPago _tipopago) {
+        if (_tipopago.getDescripcion().length() == 0) {
+            return null;
+        }
+
+        for (TipoPago tipopago:_tipopagos) {
+            if ( tipopago.getDescripcion().toLowerCase().equals(_tipopago.getDescripcion().toLowerCase()) ) {
                 return null;
             }
         }
-        TipoPago nuevo = new TipoPago(_tipospago.size() + 1, descripcion);
-        _tipospago.add(nuevo);
 
-        return nuevo;
+        _tipopago.setId(_tipopagos.get(_tipopagos.size() - 1).getId() + 1);
+        _tipopagos.add(_tipopago);
+        return _tipopago;
+    }
+
+    public static ArrayList<TipoPago> addTipoPagos(ArrayList<TipoPago> _tipopagos) {
+        for (int i = 0; i < _tipopagos.size(); i++) {
+            _tipopagos.set(i, TipoPagoHandler.addTipoPago(_tipopagos.get(i)));
+        }
+
+        return _tipopagos;
     }
 }

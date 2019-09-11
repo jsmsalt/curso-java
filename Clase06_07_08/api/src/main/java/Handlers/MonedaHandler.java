@@ -27,52 +27,57 @@ public class MonedaHandler {
     }
 
     public static Moneda deleteMoneda(int id) {
-        int index = 0;
-        for (Moneda moneda:_monedas) {
-            if ( moneda.getId() == id ) {
-                return _monedas.remove(index);
+        for (int i = 0; i < _monedas.size(); i++) {
+            if ( _monedas.get(i).getId() == id ) {
+                return _monedas.remove(i);
             }
-            index++;
         }
         return null;
     }
 
-    public static Moneda updateMoneda(int id, String descripcion, float cotizacion) {
-        int index = 0;
+    public static Moneda updateMoneda(int id, Moneda _moneda) {
         int indexUpdate = -1;
-        Moneda aux;
 
-        for (Moneda moneda:_monedas) {
-            if ( moneda.getDescripcion().toLowerCase().equals(descripcion.toLowerCase()) ) {
+        for (int i = 0; i < _monedas.size(); i++) {
+            if ( _monedas.get(i).getDescripcion().toLowerCase().equals(_moneda.getDescripcion().toLowerCase()) ) {
                 return null;
             }
 
-            if ( moneda.getId() == id ) {
-                indexUpdate = index;
+            if ( _monedas.get(i).getId() == id ) {
+                indexUpdate = i;
             }
-            index++;
         }
 
         if (indexUpdate != -1) {
-            aux = _monedas.get(indexUpdate);
-            aux.setDescripcion(descripcion);
-            aux.setCotizacion(cotizacion);
-            _monedas.set(indexUpdate, aux);
-            return aux;
+            _moneda.setId(_monedas.get(indexUpdate).getId());
+            _monedas.set(indexUpdate, _moneda);
+            return _moneda;
         }
 
         return null;
     }
 
-    public static Moneda addMoneda(String descripcion, float cotizacion) {
+    public static Moneda addMoneda(Moneda _moneda) {
+        if (_moneda.getDescripcion().length() == 0) {
+            return null;
+        }
+
         for (Moneda moneda:_monedas) {
-            if ( moneda.getDescripcion().toLowerCase().equals(descripcion.toLowerCase()) ) {
+            if ( moneda.getDescripcion().toLowerCase().equals(_moneda.getDescripcion().toLowerCase()) ) {
                 return null;
             }
         }
-        Moneda nuevo = new Moneda(_monedas.size() + 1, descripcion, cotizacion);
-        _monedas.add(nuevo);
 
-        return nuevo;
+        _moneda.setId(_monedas.get(_monedas.size() - 1).getId() + 1);
+        _monedas.add(_moneda);
+        return _moneda;
+    }
+
+    public static ArrayList<Moneda> addMonedas(ArrayList<Moneda> _monedas) {
+        for (int i = 0; i < _monedas.size(); i++) {
+            _monedas.set(i, MonedaHandler.addMoneda(_monedas.get(i)));
+        }
+
+        return _monedas;
     }
 }

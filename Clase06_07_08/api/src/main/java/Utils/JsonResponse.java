@@ -1,12 +1,13 @@
 package Utils;
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import spark.Response;
 
 public class JsonResponse {
-    private static Gson gson = new Gson();
+    private static ObjectMapper mapper = new ObjectMapper();
+
     public static String ok(Object model, Response r) {
         try {
-            r.body(gson.toJson(model));
+            r.body(mapper.writeValueAsString(model));
             r.status(200);
 
         } catch (Exception e) {
