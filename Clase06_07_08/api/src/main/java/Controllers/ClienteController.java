@@ -46,7 +46,7 @@ public class ClienteController {
             return ok(ClienteHandler.updateCliente(id, clientes.get(0)), response);
         }
 
-        return null;
+        return error("No se enviaron los parametros requeridos", response);
     };
 
     public static Route addCliente = (Request request, Response response) -> {

@@ -1,5 +1,6 @@
 package Domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 
 public class Movimiento {
@@ -7,7 +8,9 @@ public class Movimiento {
     public static final byte EGRESO = 2;
 
     private int id;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date fecha;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date fechaVencimiento;
     private float monto;
     private String descripcion;

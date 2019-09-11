@@ -48,7 +48,7 @@ public class TipoPagoController {
             return ok(TipoPagoHandler.updateTipoPago(id, tipopagos.get(0)), response);
         }
 
-        return null;
+        return error("No se enviaron los parametros requeridos", response);
     };
 
     public static Route addTipoPago = (Request request, Response response) -> {

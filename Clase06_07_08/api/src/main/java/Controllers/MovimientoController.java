@@ -1,5 +1,6 @@
 package Controllers;
 
+import Domain.FiltroMovimiento;
 import Domain.Movimiento;
 import Handlers.MovimientoHandler;
 import Utils.Mapper;
@@ -12,7 +13,31 @@ import static Utils.JsonResponse.ok;
 import static Utils.JsonResponse.error;
 
 public class MovimientoController {
-    public static Route getMovimientos = (Request request, Response response) -> ok(MovimientoHandler.getMovimientos(), response);
+    public static Route getMovimientos = (Request request, Response response) -> {
+        FiltroMovimiento filtroMovimiento = Mapper.fromJSON(request, new TypeReference<FiltroMovimiento>() {});
+
+        if (filtroMovimiento == null || (filtroMovimiento.getFechaInicio() == null && filtroMovimiento.getFechaFin() == null)) {
+            return ok(MovimientoHandler.getMovimientos(), response);
+        } else {
+            if (filtroMovimiento.getTipoMovimiento() != 0) {
+                return ok(MovimientoHandler.getMovimientosPorTipo(filtroMovimiento), response);
+            } else if (filtroMovimiento.getSubtipo() != 0) {
+                return ok(MovimientoHandler.getMovimientosPorSubtipo(filtroMovimiento), response);
+            }
+        }
+
+        return error("No se enviaron los parametros requeridos", response);
+    };
+
+    public static Route getDeuda = (Request request, Response response) -> {
+        FiltroMovimiento filtroMovimiento = Mapper.fromJSON(request, new TypeReference<FiltroMovimiento>() {});
+
+        if (filtroMovimiento != null) {
+            return ok(MovimientoHandler.deudaXAcreedor(filtroMovimiento), response);
+        }
+
+        return error("No se enviaron los parametros requeridos", response);
+    };
 
     public static Route getMovimiento = (Request request, Response response) -> {
         try {
@@ -46,7 +71,7 @@ public class MovimientoController {
             return ok(MovimientoHandler.updateMovimiento(id, movimientos.get(0)), response);
         }
 
-        return null;
+        return error("No se enviaron los parametros requeridos", response);
     };
 
     public static Route addMovimiento = (Request request, Response response) -> {

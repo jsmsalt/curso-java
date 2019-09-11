@@ -48,7 +48,7 @@ public class MonedaController {
             return ok(MonedaHandler.updateMoneda(id, monedas.get(0)), response);
         }
 
-        return null;
+        return error("No se enviaron los parametros requeridos", response);
     };
 
     public static Route addMoneda = (Request request, Response response) -> {

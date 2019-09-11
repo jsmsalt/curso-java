@@ -68,7 +68,8 @@ public class MonedaHandler {
             }
         }
 
-        _moneda.setId(_monedas.get(_monedas.size() - 1).getId() + 1);
+        int newId = _monedas.size() == 0 ? 1:_monedas.get(_monedas.size() - 1).getId() + 1;
+        _moneda.setId(newId);
         _monedas.add(_moneda);
         return _moneda;
     }

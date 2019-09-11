@@ -64,7 +64,8 @@ public class ClienteHandler {
                 return null;
             }
         }
-        _cliente.setId(_clientes.get(_clientes.size() - 1).getId() + 1);
+        int newId = _clientes.size() == 0 ? 1:_clientes.get(_clientes.size() - 1).getId() + 1;
+        _cliente.setId(newId);
         _clientes.add(_cliente);
         return _cliente;
     }

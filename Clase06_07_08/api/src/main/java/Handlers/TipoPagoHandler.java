@@ -69,7 +69,8 @@ public class TipoPagoHandler {
             }
         }
 
-        _tipopago.setId(_tipopagos.get(_tipopagos.size() - 1).getId() + 1);
+        int newId = _tipopagos.size() == 0 ? 1:_tipopagos.get(_tipopagos.size() - 1).getId() + 1;
+        _tipopago.setId(newId);
         _tipopagos.add(_tipopago);
         return _tipopago;
     }

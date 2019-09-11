@@ -1,3 +1,7 @@
+/*
+    REPOSITORIO: https://github.com/jsmsalt/curso-java
+*/
+
 package Main;
 
 import static spark.Spark.*;
@@ -48,6 +52,7 @@ public class Main {
             post("/proveedores", ProveedorController.addProveedor);
 
             // Movimientos
+            get("/movimientos/deudas", MovimientoController.getDeuda);
             get("/movimientos", MovimientoController.getMovimientos);
             get("/movimientos/:id", MovimientoController.getMovimiento);
             delete("/movimientos/:id", MovimientoController.deleteMovimiento);

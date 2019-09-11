@@ -64,7 +64,9 @@ public class ProveedorHandler {
                 return null;
             }
         }
-        _proveedor.setId(_proveedores.get(_proveedores.size() - 1).getId() + 1);
+
+        int newId = _proveedores.size() == 0 ? 1:_proveedores.get(_proveedores.size() - 1).getId() + 1;
+        _proveedor.setId(newId);
         _proveedores.add(_proveedor);
         return _proveedor;
     }

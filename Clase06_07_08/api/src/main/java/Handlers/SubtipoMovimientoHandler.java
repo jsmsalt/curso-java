@@ -68,7 +68,8 @@ public class SubtipoMovimientoHandler {
             }
         }
 
-        _subtipomovimiento.setId(_subtipomovimientos.get(_subtipomovimientos.size() - 1).getId() + 1);
+        int newId = _subtipomovimientos.size() == 0 ? 1:_subtipomovimientos.get(_subtipomovimientos.size() - 1).getId() + 1;
+        _subtipomovimiento.setId(newId);
         _subtipomovimientos.add(_subtipomovimiento);
         return _subtipomovimiento;
     }

@@ -48,7 +48,7 @@ public class SubtipoMovimientoController {
             return ok(SubtipoMovimientoHandler.updateSubtipoMovimiento(id, subtipomovimientos.get(0)), response);
         }
 
-        return null;
+        return error("No se enviaron los parametros requeridos", response);
     };
 
     public static Route addSubtipoMovimiento = (Request request, Response response) -> {

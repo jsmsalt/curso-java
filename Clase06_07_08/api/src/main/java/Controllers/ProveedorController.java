@@ -46,7 +46,7 @@ public class ProveedorController {
             return ok(ProveedorHandler.updateProveedor(id, proveedores.get(0)), response);
         }
 
-        return null;
+        return error("No se enviaron los parametros requeridos", response);
     };
 
     public static Route addProveedor = (Request request, Response response) -> {
