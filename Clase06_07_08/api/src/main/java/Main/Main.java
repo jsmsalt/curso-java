@@ -6,6 +6,7 @@ package Main;
 
 import static spark.Spark.*;
 import Controllers.*;
+import spark.Filter;
 
 public class Main {
 
@@ -14,8 +15,11 @@ public class Main {
         // Puerto
         port(8080);
 
+        before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
+
         // Rutas
         path("/api", () -> {
+
             // Moneda
             get("/monedas", MonedaController.getMonedas);
             get("/monedas/:id", MonedaController.getMoneda);
